@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lonely Lonely Dance</title>
+    <link rel="icon" type="image/png" href="logo.webp">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff;
+            color: #010101;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Background Animated */
+        .background-animated {
+            animation-name: background-cycle;
+            animation-duration: 5s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video {
+            display: none;
+            max-width: 330px;
+            height: 570px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .video:hover {
+            cursor: pointer;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .action-button {
+            display: inline-flex;
+            cursor: pointer;
+            font-family: "Segoe UI", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 24px;
+            background-color: #f4f1de;
+            border: 1px solid #eeebd1;
+            color: #1d1d1d;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-button:hover {
+            background-color: #f4f1de;
+            color: #1d1d1d;
+            transform: scale(1.05);
+        }
+
+        .action-button:active {
+            background-color: #f4f1de;
+            transform: scale(1.0);
+        }
+
+        .creator {
+            position: relative;
+            text-align: center;
+            font-family: "Segoe UI", sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+            opacity: 0.4;
+            bottom: 0;
+        }
+
+        /* Background Animation */
+        @keyframes background-cycle {
+            0% {
+                background-color: #00b4d8;
+            }
+
+            33% {
+                background-color: #f15bb5;
+            }
+
+            66% {
+                background-color: #ffee32;
+            }
+
+            100% {
+                background-color: #00b4d8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <video id="playVideo" class="video">
+            <source src="video/video-dance.mp4" type="video/mp4">
+            Cargando...
+        </video>
+
+        <button id="playButton" class="action-button" type="button">¡Presioname!</button>
+
+        <p class="creator">Hecho por @AntonyPss</p>
+    </div>
+
+    <script>
+        const playButton = document.getElementById("playButton");
+        const playVideo = document.getElementById("playVideo");
+
+        playButton.addEventListener("click", () => {
+            if (
+                playVideo.style.display === "none" ||
+                playVideo.style.display === ""
+            ) {
+                playVideo.style.display = "block";
+                playButton.textContent = "¡Ocultar video!";
+                document.body.classList.add("background-animated");
+                playVideo.play();
+            } else {
+                playVideo.style.display = "none";
+                playButton.textContent = "¡Presioname!"
+                document.body.classList.remove("background-animated");
+                playVideo.pause();
+            }
+        });
+    </script>
+</body>
+
+</html>
